@@ -1,0 +1,51 @@
+.feedback-content{
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5em;
+}
+#fctimg{
+  width: 100%;
+}
+
+@media only screen and (min-width:1px) and (max-width: 653px) {
+  textarea {
+    width: 100%;
+  }
+
+  #combo-button{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  #smtdate, #codeUser {
+    display: none;
+  }
+
+}
+
+@media only screen and (min-width:653px) and (max-width: 1200px) {
+  textarea {
+    width: 100%;
+  }
+
+  #combo-button{
+    margin-left: 1.0rem;
+    margin-right: 1.0rem;
+  }
+
+  #smtdate {
+    display: none;
+  }
+}
+
+@media only screen and (min-width:1200px) {
+  textarea {
+    width: 100%;
+  }
+
+  #combo-button{
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+}

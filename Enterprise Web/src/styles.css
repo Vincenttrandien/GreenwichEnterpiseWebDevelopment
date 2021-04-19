@@ -1,0 +1,210 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+.container-fluid {
+  background-color: #f2f2f2;
+  padding-top: 5rem;
+  padding-bottom: 15px;
+  min-height: 100vh;
+}
+
+.card-box {
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid #e7eaed;
+  padding: 1.5rem;
+  margin-bottom: 24px;
+  border-radius: 0.5rem;
+}
+
+.box {
+  margin-top: 5%;
+  margin-left: 15%;
+  padding: 1.5rem;
+  width: 71%;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid #000000;
+  border-radius: 0.5rem;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.table thead th {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.modal-content{
+  border-radius: 0.5rem;
+}
+
+article {
+  display: inline-block;
+}
+
+
+@media only screen and (min-width: 1px) and (max-width: 653px) {
+  .container-fluid {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .card-box {
+    margin: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .box {
+    margin-top: 15%;
+    margin-left: 5%;
+    padding: 0.5rem;
+    width: 90%;
+  }
+
+  .table thead th {
+    padding: 2%;
+    vertical-align: middle;
+    font-size: 7px;
+  }
+
+  .table tbody td button {
+    margin-right: 0.5rem !important;
+  }
+
+  .table tbody td, table tbody td i {
+    font-size: 0.4rem;
+    vertical-align: middle;
+  }
+
+  .title {
+    font-size: 0.8rem !important;
+  }
+
+  .btnfont, label {
+    font-size: 0.5rem;
+  }
+
+  .content-1 {
+    font-size: 0.5rem !important;
+  }
+
+  .content-2 {
+    font-size: 0.6rem !important;
+  }
+
+  .content-3 {
+    font-size: 0.7rem !important;
+  }
+
+  .form-control {
+    width: 100%;
+    height: calc(0.5em + 0.75rem + 10px) !important;
+    font-size: 0.6rem ;
+  }
+
+  .form-group-custom {
+    margin-bottom: 0.3rem !important;
+  }
+
+}
+
+@media only screen and (min-width: 653px) and (max-width: 1200px) {
+  .card-box {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .box {
+    margin-top: 15%;
+    margin-left: 5%;
+    padding: 1rem;
+    width: 90%;
+  }
+
+  .table thead th {
+    padding: 2%;
+    font-size: 11px;
+  }
+
+  .table tbody td, table tbody td i {
+    font-size: 0.6rem;
+    vertical-align: middle;
+  }
+
+  .title {
+    font-size: 1rem !important;
+  }
+
+  .btnfont, label {
+    font-size: 0.7rem;
+  }
+
+  .content-1 {
+    font-size: 0.7rem !important;
+  }
+
+  .content-2 {
+    font-size: 0.8rem !important;
+  }
+
+  .content-3 {
+    font-size: 0.9rem !important;
+  }
+
+  .form-control {
+    height: calc(1.3em + .75rem + 10px);
+    font-size: 0.9rem;
+  }
+
+  .form-group-custom {
+    margin-bottom: 1.6rem !important;
+  }
+
+}
+
+@media only screen and (min-width: 1200px) {
+  .card-box {
+    margin: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .table thead th {
+    padding: 1%;
+    font-size: 12px;
+  }
+
+  .title {
+    font-size: 1.2rem !important;
+  }
+
+  .btnfont, label {
+    font-size: 0.9rem;
+  }
+
+  .content-1 {
+    font-size: 0.9rem !important;
+  }
+
+  .content-2 {
+    font-size: 1.0rem !important;
+  }
+
+  .content-3 {
+    font-size: 1.1rem !important;
+  }
+
+  .form-control {
+    height: calc(1.5em + .75rem + 2px);
+    font-size: 1rem;
+  }
+
+  .form-group-custom {
+    margin-bottom: 1.2rem !important;
+  }
+
+}

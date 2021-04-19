@@ -1,0 +1,202 @@
+<div class="container-fluid">
+  <div class="card-box">
+
+    <div class="row form-group">
+      <div class="col-7 col-sm-8 col-md-7 col-lg-5">
+        <h3 class="title font-weight-bold col-form-label">Manage Submissions</h3>
+      </div>
+
+      <div class="col-5 col-sm-4 col-md-5 col-lg-7 text-right">
+        <button id=crtbtn class="btn btn-outline-dark" (click)="createModal(create)">
+          <i class="fas fa-plus"></i> Create Submission
+        </button>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-5 col-sm-3 col-md-3 col-lg-3">
+        <ng-select class="mbl" [items]="falList" [clearable]="false" placeholder="Faculty"></ng-select>
+      </div>
+      <div class="col-5 col-sm-3 col-md-3 col-lg-3">
+        <ng-select class="mbl" [items]="yearList" [clearable]="false" placeholder="Year"></ng-select>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-center">
+        <div class="box">
+          <div class="border-bottom border-dark">
+            <img id="fctimg" class="mb-3"
+            src="assets/image/submission1.png" alt="">
+          </div>
+          <div class="text-left mt-3">
+            <article class="content-3 font-weight-bold" style="display: block !important;" (click)="editModal(edit)">Database</article>
+            <article class="content-1 font-weight-bold mr-3">Deadline: </article>
+            <article class="content-1">03/25/2020</article>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-center">
+        <div class="box">
+          <div class="border-bottom border-dark">
+            <img id="fctimg" class="mb-3"
+            src="assets/image/submission2.png" alt="">
+          </div>
+          <div class="text-left mt-3">
+            <article class="content-3 font-weight-bold" style="display: block !important;">Digital</article>
+            <article class="content-1 font-weight-bold mr-3">Deadline: </article>
+            <article class="content-1">03/25/2020</article>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-center">
+        <div class="box">
+          <div class="border-bottom border-dark">
+            <img id="fctimg" class="mb-3"
+                  src="assets/image/submission3.png" alt="">
+          </div>
+          <div class="text-left mt-3">
+            <article class="content-3 font-weight-bold" style="display: block !important;">Network System</article>
+            <article class="content-1 font-weight-bold mr-3">Deadline: </article>
+            <article class="content-1">03/25/2020</article>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-center">
+        <div class="box">
+          <div class="border-bottom border-dark">
+            <img id="fctimg" class="mb-3"
+            src="assets/image/submission4.png" alt="">
+          </div>
+          <div class="text-left mt-3">
+            <article class="content-3 font-weight-bold" style="display: block !important;">Implement</article>
+            <article class="content-1 font-weight-bold mr-3">Deadline: </article>
+            <article class="content-1">03/25/2020</article>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<ng-template #create>
+  <div class="">
+    <h4 class="float-left mt-3 ml-3">Create New Submission</h4>
+  </div>
+  <div class="modal-body">
+    <div class="row form-group">
+      <div class="col-lg-12">
+        <input id="name" class="form-control" placeholder="Enter submission name">
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-lg-12">
+        <input id="upload" class="form-control" placeholder="Related Document">
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-lg-12">
+        <input id="dl1" class="form-control" placeholder="Deadline 1">
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-lg-12">
+        <input id="dl2" class="form-control" placeholder="Deadline 2">
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-lg-12">
+        <input type="file" id="fileInput" class="form-control-file">
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-lg-12 mb-0">
+        <ng-select class="custom" placeholder="Faculty"></ng-select>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-lg-12">
+        <textarea class="form-control" rows="5" placeholder="Description"></textarea>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-center">
+          <button class="col-12 col-sm-12 col-md-12 col-lg-12 btn btn-secondary btnfont" (click)="closeModal()">
+            <!-- <i class="fas fa-times-circle"></i>  -->
+            Cancel</button>
+      </div>
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-center">
+        <button class="col-12 col-sm-12 col-md-12 col-lg-12 btn btn-outline-secondary btnfont">
+          <!-- <i class="fas fa-edit"></i>  -->
+          Save</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #edit>
+  <div class="row">
+    <div class="col-6 col-sm-7 col-lg-6 text-left">
+      <h4 class="mt-3 ml-3">Edit Submission</h4>
+    </div>
+    <div class="col-6 col-sm-5 col-lg-6 text-right">
+      <button class="col-5 col-sm-6 col-lg-3 btn btn-danger btnfont mr-3 mt-3">Delete</button>
+    </div>
+  </div>
+  <div class="modal-body">
+    <div class="row form-group">
+      <div class="col-lg-12">
+        <input id="name" class="form-control" placeholder="Enter submission name">
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-lg-12">
+        <input id="upload" class="form-control" placeholder="Related Document">
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-lg-12">
+        <input id="dl1" class="form-control" placeholder="Deadline 1">
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-lg-12">
+        <input id="dl2" class="form-control" placeholder="Deadline 2">
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-lg-12 col-form-label">
+       <input type="file" id="fileInput" class="form-control-file">
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-lg-12 mb-0">
+        <ng-select class="custom" placeholder="Faculty"></ng-select>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-lg-12">
+        <textarea class="form-control" rows="5" placeholder="Description"></textarea>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-center">
+          <button class="col-12 col-sm-12 col-md-12 col-lg-12 btn btn-secondary btnfont" (click)="closeModal()">
+            <!-- <i class="fas fa-times-circle"></i>  -->
+            Cancel</button>
+      </div>
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-center">
+        <button class="col-12 col-sm-12 col-md-12 col-lg-12 btn btn-outline-secondary btnfont">
+          <!-- <i class="fas fa-edit"></i>  -->
+          Save</button>
+      </div>
+    </div>
+  </div>
+</ng-template>

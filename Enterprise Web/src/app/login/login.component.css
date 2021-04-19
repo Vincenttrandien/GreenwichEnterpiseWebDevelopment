@@ -1,0 +1,87 @@
+#card-box{
+  margin-right: 2%;
+  margin-left: 2%;
+}
+
+.row{
+  width: 100% !important;
+}
+
+#input{
+  margin-left: 9% !important;
+}
+
+#lgForm{
+  margin-left: 6%;
+}
+
+.container-fluid{
+  padding-top: 0 !important;
+  min-height: 0% !important;
+}
+
+#login {
+  height: 100vh !important;
+}
+
+#logo {
+  width: 70%;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  margin-left: 6%;
+}
+
+#label{
+  height: 35px;
+}
+
+@media only screen and (min-width: 1px) and (max-width: 767px) {
+  #login{
+    display: none;
+  }
+
+  #input span {
+    font-size: 90%;
+  }
+
+  #logo {
+    margin-top: 20%;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+
+  #login {
+    display: block;
+    width: 100%;
+  }
+
+  #lgForm{
+    margin-left: 5%;
+  }
+
+  #logo {
+    margin-top: 15vh;
+  }
+
+}
+
+
+@media only screen and (min-width: 1200px) {
+
+  #login {
+    display: block;
+    width: 100%;
+  }
+
+  #lgForm{
+    margin-left: 5%;
+  }
+
+  #logo {
+    margin-top: 15vh;
+  }
+
+}
+
+

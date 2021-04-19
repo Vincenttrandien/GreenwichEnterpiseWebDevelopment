@@ -1,0 +1,238 @@
+<div class="container-fluid">
+
+<div class="card-box" >
+  <div class="row">
+    <div class="col-lg-3">
+      <h3 class="font-weight-bold title">My Contributions</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-center" *ngFor="let item of topicList">
+      <div class="box">
+        <div class="border-bottom border-dark">
+          <img id="fctimg" class="mb-3"
+          src="assets/image/submission1.png" alt="">
+        </div>
+        <div class="text-left mt-3">
+          <article class="content-3 font-weight-bold" style="display: block !important;"
+                   (click)="showTopic(show, item)">{{item.name}}</article>
+          <article class="content-1 font-weight-bold mr-3">Deadline: </article>
+          <article class="content-1">{{item.dateUpdate}}</article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #show>
+  <h5 class="title mt-3 ml-3">
+    <article (click)="dfLayout()"> Contributions </article> > Database
+  </h5>
+  <div *ngFor="let item of dataList">
+    <div class="card-box mb-4">
+      <div class="row">
+        <div class="col-lg-12 mb-2">
+          <h4 class="title">Description</h4>
+        </div>
+        <div class="col-lg-12">
+          <div class="row text-center">
+            <textarea rows="8" >{{item.desc}}</textarea>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card-box mb-4">
+      <div class="row">
+        <div class="col-lg-12 mb-2">
+          <h4 class="title">Document Related</h4>
+        </div>
+        <div class="col-lg-12">
+          <table class="table border">
+            <thead>
+              <tr></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-center">1</td>
+                <td>{{item.nameFile}}</td>
+                <td class="text-center px-1">
+                  <button class="btn btn-link text-dark px-0 mr-3"><i class="far fa-eye"></i></button>
+                  <button class="btn btn-link text-dark px-0" style="margin: 0 !important"
+                          (click)="downloadFile()"><i class="fas fa-cloud-download-alt"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="row text-center">
+      <button class="btn btn-success mb-3" style="margin-left: auto; margin-right: auto;"
+              (click)="submitForm(submit)"> Submit </button>
+    </div>
+  </div>
+</ng-template>
+
+
+
+
+<ng-template #submit>
+  <h5 class="title mt-3 ml-3"><article (click)="dfLayout()"> Contributions </article> > Database > Deadline 1</h5>
+  <div class="card-box mb-4">
+    <div class="row">
+      <div class="col-lg-12 mb-2">
+        <h4 class="title">Deadline 1</h4>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td>Submission Status : <span>Submitted</span></td>
+            </tr>
+            <tr>
+              <td>Due Date : <span>Submitted</span></td>
+            </tr>
+            <tr>
+              <td>Last Modifided : <span>Submitted</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 mb-2">
+        <h4 class="title">Deadline</h4>
+      </div>
+    </div>
+    <div class="box" style="margin: 0rem; width: 100%; border-radius: 0; border-color: #dee2e6;">
+      <form [formGroup]="contributionForm" (ngSubmit)="onSubmit(contributionForm.value)">
+        <div class="row form-group">
+          <div class="col-lg-2">
+            <label>Submission code:</label>
+          </div>
+          <div class="col-lg-6">
+            <input [ngClass]="{ 'is-invalid': submitted && f.codeSubmission.errors }"  class="form-control"
+                    formControlName="codeSubmission">
+            <div *ngIf="submitted && f.codeSubmission.errors" class="invalid-feedback">
+              <div *ngIf="f.codeSubmission.errors.required">Submission code cannot be empty</div>
+            </div>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-lg-2">
+            <label>Submit Date:</label>
+          </div>
+          <div class="input-group col-lg-6">
+            <input ngbDatepicker [ngClass]="{ 'is-invalid': submitted && f.dateSubmit.errors }" class="form-control"
+                   placeholder="dd/MM/yyyy" autocomplete="off" id="name"readonly
+                   formControlName="dateSubmit" #dateSubmit="ngbDatepicker">
+            <div class="input-group-append" (click)="dateSubmit.toggle()">
+              <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+            </div>
+            <div *ngIf="submitted && f.dateSubmit.errors" class="invalid-feedback">
+              <div *ngIf="f.dateSubmit.errors.required">Submit date cannot be empty</div>
+            </div>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-lg-2">
+            <label>Comment :</label>
+          </div>
+          <div class="col-lg-6">
+            <textarea class="form-control" (keydown.enter)="onSubmit(contributionForm.value)"
+                      formControlName="comment" style="margin: 0 !important"></textarea>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-lg-2">
+            <label>File :</label>
+          </div>
+          <div class="col-lg-6">
+            <input type="file" (change)="selectFile($event)">
+          </div>
+        </div>
+      </form>
+      <div class="row">
+        <div class="col-5 col-sm-5 col-md-5 col-lg-5"></div>
+
+        <button type="submit" class="col-2 col-sm-2 col-md-2 col-lg-2 btn btn-success btnfont"
+                (click)="onSubmit(contributionForm.value)">Submit</button>
+
+        <div class="col-5 col-sm-5 col-md-5 col-lg-5"></div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-4 mb-2">
+        <h4 class="title">Marketing Coordinator Feedbacks</h4>
+      </div>
+    </div>
+    <div>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td>
+                <div class="row">
+                  <div class="col-lg-2">
+                    <span>View Status :</span>
+                  </div>
+                  <div class="col-lg-8">
+
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="row">
+                  <div class="col-lg-2">
+                    <span>Date :</span>
+                  </div>
+                  <div class="col-lg-8">
+
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="row">
+                  <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <span>Feedback Comments :</span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="box" style="margin: 0rem; width: 100%; border-radius: 0.5rem; border-color: #dee2e6;">
+                      <div class="row form-group">
+                        <div class="col-7 col-sm-7 col-md-7 col-lg-7 col-xl-7">
+                          <span class="font-weight-bold"> Tên + Role </span>
+                        </div>
+                        <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 text-right">
+                          <span class="font-weight-bold"> Ngày </span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <span class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">Nội dung</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+
+</ng-template>
+
+

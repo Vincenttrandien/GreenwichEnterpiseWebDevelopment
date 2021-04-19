@@ -1,0 +1,97 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8 pr-0">
+      <div class="card-box" style="margin-right: 0.5rem !important;">
+        <google-chart #chart [title]="title" [type]="type" [data]="data"
+                      [options]="options" [width]="width1" [height]="height1">
+        </google-chart>
+      </div>
+    </div>
+    <div class="col-md-4 pl-0">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card-box" style="margin-bottom: 0.5rem !important; padding: 1rem !important;
+               margin-left: 0.5rem !important">
+            <div class="row">
+              <div class="col-lg-10">
+                <p class="font-weight-bold"> Number of Submissions </p>
+              </div>
+              <div class="col-lg-2 text-center">
+                <i class="fas fa-file-alt text-primary" style="font-size: 1.5rem;"></i>
+              </div>
+            </div>
+            <div class="row my-3" style="font-size: 1.7rem">
+              <div class="col-lg-4 text-center">
+                <span class="font-weight-bold"> 5 </span>
+              </div>
+              <div class="col-lg-8 text-left">
+                <p>Contributions</p>
+              </div>
+            </div>
+            <div class="row border-top">
+              <div class="col-lg-4 text-center mt-3" style="margin-right: auto; margin-left: auto">
+                <ng-select [(ngModel)]="topYear" [items]="yearList" [clearable]="false"></ng-select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card-box" style="margin-bottom: 0.5rem !important; padding: 1rem !important;
+               margin-top: 0.5rem !important; margin-left: 0.5rem !important">
+            <div class="row">
+              <div class="col-lg-10">
+                <p class="font-weight-bold"> Number of Recommended Contributions </p>
+              </div>
+              <div class="col-lg-2 text-center">
+                <i class="fas fa-file-alt text-primary" style="font-size: 1.4rem;"></i>
+              </div>
+            </div>
+            <div class="row my-3" style="font-size: 1.7rem">
+              <div class="col-lg-4 text-center">
+                <span class="font-weight-bold"> 5 </span>
+              </div>
+              <div class="col-lg-8 text-left">
+                <p>Contributions</p>
+              </div>
+            </div>
+            <div class="row border-top">
+              <div class="col-lg-4 text-center mt-3" style="margin-right: auto; margin-left: auto">
+                <ng-select [(ngModel)]="middleYear" [items]="yearList" [clearable]="false"></ng-select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card-box" style="margin-bottom: 0.5rem !important; padding: 1rem !important;
+               margin-top: 0.5rem !important; margin-left: 0.5rem !important">
+            <div class="row">
+              <div class="col-lg-10">
+                <p class="font-weight-bold"> Number of Missed Deadlines </p>
+              </div>
+              <div class="col-lg-2 text-center">
+                <i class="fas fa-file-alt text-primary" style="font-size: 1.5rem;"></i>
+              </div>
+            </div>
+            <div class="row my-3" style="font-size: 1.7rem">
+              <div class="col-lg-4 text-center">
+                <span class="font-weight-bold"> 5 </span>
+              </div>
+              <div class="col-lg-8 text-left">
+                <p>Times</p>
+              </div>
+            </div>
+            <div class="row border-top">
+              <div class="col-lg-4 text-center mt-3" style="margin-right: auto; margin-left: auto">
+                <ng-select [(ngModel)]="botYear" [items]="yearList" [clearable]="false"></ng-select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

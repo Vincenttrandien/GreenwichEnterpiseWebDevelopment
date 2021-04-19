@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="card-box">
+    <div class="row">
+      <div class="col-lg-3">
+        <h3 class="font-weight-bold title">Contribution List</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-center" *ngFor="let item of topicList">
+        <div class="box">
+          <div class="border-bottom border-dark">
+            <img id="fctimg" class="mb-3"
+            src="assets/image/submission1.png" alt="">
+          </div>
+          <div class="text-left mt-3">
+            <article class="content-3 font-weight-bold" style="display: block !important;"
+                     (click)="showTopic(item)">{{item.name}}</article>
+            <article class="content-1 font-weight-bold mr-3">Deadline: </article>
+            <article class="content-1">{{item.dateUpdate}}</article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

@@ -1,0 +1,145 @@
+@media only screen and (min-width: 1px) and (max-width: 653px) {
+
+  .container-fluid {
+    padding-top: 75px;
+    padding-left: 5%;
+  }
+
+  .card-box {
+    padding: 0.5rem;
+  }
+
+  .ng-select .ng-select-container {
+    min-height: 5px !important;
+  }
+
+  .ng-select.ng-select-single .ng-select-container {
+    height: 15px !important;
+  }
+
+  .table td, .table th {
+    vertical-align: middle !important;
+  }
+
+  .table tbody td {
+    padding: 2%;
+    font-size: 7px;
+    border-bottom: 1px;
+  }
+
+  table thead #email, #add {
+    display: none;
+  }
+
+  table tbody #email, #add {
+    display: none;
+  }
+
+  #createbtn{
+    font-size: 6px;
+  }
+
+  #createbtn i{
+    font-size: 9px;
+  }
+
+  td button {
+    margin: 0 !important;
+    padding: 2px !important;
+  }
+
+  td button i {
+    font-size: 0.5rem;
+  }
+
+  .div-title h4 {
+    font-size: 14px;
+  }
+
+}
+
+@media only screen and (min-width: 653px) and (max-width: 1200px) {
+  .container-fluid {
+    padding-top: 80px;
+  }
+
+  .card-box {
+    padding: 1rem;
+  }
+
+  .table td, .table th {
+    vertical-align: middle !important;
+  }
+
+  .table tbody td {
+    padding: 2%;
+    font-size: 11px;
+    border-bottom: 1px;
+  }
+
+  table thead #email {
+    display: none;
+  }
+
+  table tbody #email {
+    display: none;
+  }
+
+  td button {
+    margin: 0 !important;
+    padding: 5px !important;
+  }
+
+  td button i {
+    font-size: 11px;
+  }
+
+  #createbtn {
+    font-size: 0.85rem;
+  }
+
+  .div-title h4 {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .container-fluid{
+    padding-top: 85px;
+  }
+
+  .div-title h4 {
+    font-size: 20px;
+  }
+
+  .table td, .table th {
+    vertical-align: middle !important;
+  }
+
+  .table tbody td {
+    padding: 1%;
+    font-size: 12px;
+    border-bottom: 1px;
+  }
+
+  td button {
+    margin-right: 5% !important;
+  }
+
+  td button i {
+    font-size: 0.8rem;
+  }
+
+  #createbtn{
+    font-size: 1rem;
+  }
+
+  table thead #email {
+    display: table-cell;
+  }
+
+  table tbody #email {
+    display: table-cell;
+  }
+
+}

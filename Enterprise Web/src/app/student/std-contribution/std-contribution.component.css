@@ -1,0 +1,32 @@
+#fctimg{
+  width: 100%;
+}
+
+.col-lg-12 {
+  margin-bottom: 2%;
+}
+
+@media only screen and (min-width:1px) and (max-width: 653px) {
+  textarea {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-size: 0.5rem;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width:653px) and (max-width: 1200px) {
+  textarea {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width:1200px) {
+  textarea {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    width: 100%;
+  }
+}

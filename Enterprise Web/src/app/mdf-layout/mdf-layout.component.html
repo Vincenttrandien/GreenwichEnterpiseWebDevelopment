@@ -1,0 +1,299 @@
+<div id="wrapper" class="">
+  <!-- Sidebar -->
+  <div id="sidebar" class="float-left">
+    <!-- Sidebar Header -->
+    <div id="sidebar-header" class="sidebar-header text-center">
+        <img id="logo1" class="py-0 mt-3" src="/assets/image/logo2-wt.png">
+        <img id="logo2" class="py-0 mt-2" src="/assets/image/icon-logo2-wt.png">
+        <button class="btn btn-link pt-0 mt-3 text-white"id="menu-toggle1">
+          <i class="fas fa-bars"></i></button>
+    </div>
+
+
+    <!-- ADMIN -->
+    <div *ngIf="basedLayout  == 1">
+      <div id="menu" class="">
+        <h6 class="text-white font-weight-bold pl-3">Menu</h6>
+        <button (click)="mngAccount()" title="Manage Account">
+          <i class="fas fa-user-friends text-white float-left"></i>
+          <a id="mngAccount" class="btn btn-link text-left text-white py-2 float-left">
+                Manage Account</a><br>
+        </button>
+
+        <button (click)="mngFaculty()" title="Manage Faculty">
+          <i class="fas fa-university text-white float-left"></i>
+          <a id="mngFaculty" class="btn btn-link text-left text-white py-2 float-left">
+                Manage Faculty</a><br>
+        </button>
+
+        <button (click)="mngSubmit()" title="Manage Submission">
+          <i class="fas fa-book-open text-white float-left"></i>
+          <a id="mngSubmit" class="btn btn-link text-left text-white py-2 float-left">
+                Manage Submission</a><br>
+        </button>
+      </div>
+    </div>
+
+    <!-- MARKETING MANAGER -->
+    <div *ngIf="basedLayout  == 3">
+      <div id="menu" class="">
+        <button (click)="mmDashboard()" title="Dashboard">
+          <i class="fas fa-chart-line text-white float-left"></i>
+          <a id="mngSubmit" class="btn btn-link text-left text-white py-2 float-left">
+                Dashboard</a><br>
+        </button>
+
+        <button (click)="mmChat()" title="Chat">
+          <i class="far fa-comment-dots text-white float-left"></i>
+          <a id="mngSubmit" class="btn btn-link text-left text-white py-2 float-left">
+                Chat</a><br>
+        </button>
+
+        <button (click)="mmManage()" title="My Contribution">
+          <i class="fas fa-address-card text-white float-left"></i>
+          <a id="mngSubmit" class="btn btn-link text-left text-white py-2 float-left">
+                Manage MC</a><br>
+        </button>
+
+        <button (click)="mmContributions()" title="My Contribution">
+          <i class="far fa-file-word text-white float-left"></i>
+          <a id="mngSubmit" class="btn btn-link text-left text-white py-2 float-left">
+                Contribution</a><br>
+        </button>
+      </div>
+    </div>
+
+    <!-- MARKETING COORDINATOR -->
+    <div *ngIf="basedLayout  == 2">
+      <div id="menu" class="">
+        <button (click)="mcDashboard()" title="Dashboard">
+          <i class="fas fa-desktop text-white float-left"></i>
+          <a id="mngSubmit" class="btn btn-link text-left text-white py-2 float-left">
+                Dashboard</a><br>
+        </button>
+
+        <button (click)="mcContribution()" title="Chat">
+          <i class="fas fa-comment-dots text-white float-left"></i>
+          <a id="mngSubmit" class="btn btn-link text-left text-white py-2 float-left">
+                Chat</a><br>
+        </button>
+
+        <button (click)="mcHistory()" title="My Contribution">
+          <i class="fas fa-clipboard-list text-white float-left"></i>
+          <a id="mngSubmit" class="btn btn-link text-left text-white py-2 float-left">
+                Contribution</a><br>
+        </button>
+
+        <button (click)="mcHistory()" title="My Contribution">
+          <i class="fas fa-clipboard-list text-white float-left"></i>
+          <a id="mngSubmit" class="btn btn-link text-left text-white py-2 float-left">
+                History Recommended</a><br>
+        </button>
+      </div>
+    </div>
+
+    <!-- STUDENT -->
+    <div *ngIf="basedLayout  === 4">
+      <div id="menu" class="">
+        <button (click)="stdDash()" title="Dashboard">
+          <i class="fas fa-desktop text-white float-left"></i>
+          <a id="mngSubmit" class="btn btn-link text-left text-white py-2 float-left">
+                Dashboard</a><br>
+        </button>
+
+        <button (click)="stdChat()" title="Chat">
+          <i class="fas fa-comment-dots text-white float-left"></i>
+          <a id="mngSubmit" class="btn btn-link text-left text-white py-2 float-left">
+                Chat</a><br>
+        </button>
+
+        <button (click)="stdContribution()" title="My Contribution">
+          <i class="fas fa-clipboard-list text-white float-left"></i>
+          <a id="mngSubmit" class="btn btn-link text-left text-white py-2 float-left">
+                Contribution</a><br>
+        </button>
+      </div>
+    </div>
+
+    <!-- GUEST -->
+    <div *ngIf="basedLayout  == 5">
+      <div id="menu" class="">
+        <button (click)="mngSubmit()" title="Dashboard">
+          <i class="fas fa-desktop text-white float-left"></i>
+          <a id="mngSubmit" class="btn btn-link text-left text-white py-2 float-left">
+                Dashboard</a><br>
+        </button>
+
+        <button (click)="mngSubmit()" title="Chat">
+          <i class="fas fa-comment-dots text-white float-left"></i>
+          <a id="mngSubmit" class="btn btn-link text-left text-white py-2 float-left">
+                Chat</a><br>
+        </button>
+
+        <button (click)="stdContribution()" title="My Contribution">
+          <i class="fas fa-clipboard-list text-white float-left"></i>
+          <a id="mngSubmit" class="btn btn-link text-left text-white py-2 float-left">
+                Contribution</a><br>
+        </button>
+      </div>
+    </div>
+    <!-- /Menu -->
+  </div>
+    <!-- /Sidebar Header -->
+</div>
+  <!-- /Sidebar  -->
+
+<div id="body" class="">
+  <div id="header" class="">
+    <div class="bg-light border-bottom pl-4 pb-3 pt-3">
+      <button class="btn btn-link text-dark pt-0"id="menu-toggle2">
+        <i class="fas fa-bars"></i></button>
+      <span id="title1" class=" font-weight-bold text-dark by-3">
+        Greenwich University Magazine</span>
+      <span id="title2" class=" font-weight-bold text-dark by-3">
+        GU Magazine</span>
+      <ul class="float-right" style="list-style:none">
+        <li class="float-left border-left">
+          <ul style="list-style:none;">
+            <li style= "height: 10px !important; margin-bottom: 0.4rem !important;
+                        font-size: 0.65rem; margin-top: 0.1rem !important;">
+              <p class="mb-0 ml-2">{{currentName}}</p>
+            </li>
+            <li style= "height: 10px !important; margin-bottom: 0.1rem !important;
+                       font-size: 0.65rem;">
+              <p class="text-primary mb-0 ml-2">{{currentRole}}</p>
+            </li>
+          </ul>
+        </li>
+        <li class="float-right">
+          <img id="user" class="py-0" src="/assets/image/user-image.png">
+        </li>
+        <li class="float-right">
+          <div ngbDropdown id="ddbtn" placement="bottom-right">
+            <button class="btn btn-light ml-2" id="dropdownMenuButton" ngbDropdownToggle></button>
+            <div ngbDropdownMenu>
+              <button ngbDropdownItem style="font-size: 0.9em;" (click)="profileModal(profile)">Profile</button>
+              <button ngbDropdownItem style="font-size: 0.9em;" (click)="repassModal(repass)" class="border-bottom">Change password</button>
+              <button ngbDropdownItem style="font-size: 0.9em;" (click)="logoutModal(logout)" class="text-danger">Logout</button>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+
+      <button id="notify" class="btn btn-light float-right text-primary mt-2 py-0"><i class="far fa-bell"></i></button>
+      <button id="notify" class="btn btn-light float-right text-danger mt-2 py-0"><i class="far fa-bell-slash"></i></button>
+
+    </div>
+  </div>
+  <div id="content" class="">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<footer>
+  <div id="footer" class="border-top ">
+    <ul style="list-style: none;">
+      <li class="float-left">
+        <a class="text-muted pl-3"> Copyright 2021 LOVI. Company</a>
+      </li>
+      <li class="float-right">
+        <a class="pr-3"> Privacy Policy | Term & Conditions </a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+Ư
+<ng-template #profile>
+  <form [formGroup]="profileForm">
+    <div class="row">
+      <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+        <div class="row">
+          <img id="imgprf" class="col-12 col-sm-12 col-md-12 col-lg-12"
+               src="assets/image/user-image.png">
+        </div>
+        <div class="row">
+          <button id="imgbtn" class="col-6 col-sm-6 col-md-6 btn btn-dark auto-dsg">
+                  Change Photo</button>
+        </div>
+      </div>
+      <div class="col-8 col-sm-8 col-md-8 col-lg-8 mt-3">
+        <h4 class="mt-3 mb-4">Personal Information</h4>
+        <div class="row form-group">
+          <input class="col-11 col-ms-11 col-md-11 col-lg-11 form-control"
+                 placeholder="Name" formControlName="name">
+        </div>
+        <div class="row form-group">
+          <input class="col-11 col-ms-11 col-md-11 col-lg-11 form-control"
+                 placeholder="Date of Birth" formControlName="dob">
+        </div>
+        <div class="row form-group">
+          <input class="col-11 col-ms-11 col-md-11 col-lg-11 form-control"
+                 placeholder="Address" formControlName="address">
+        </div>
+        <div class="row form-group">
+          <input class="col-11 col-ms-11 col-md-11 col-lg-11 form-control"
+                 placeholder="Email" formControlName="email">
+        </div>
+        <div class="row form-group">
+          <input class="col-11 col-ms-11 col-md-11 col-lg-11 form-control"
+                 placeholder="Phone Number" formControlName="phoneNumber">
+        </div>
+      </div>
+    </div>
+    <div id="prfbtn" class="row form-group text-center mt-3">
+      <button class="col-5 col-sm-5 col-md-5 col-lg-5 btn btn-outline-dark mr-4"
+              (click)="updateProfile(profileForm.value)"> Save </button>
+      <button class="col-5 col-sm-5 col-md-5 col-lg-5 btn btn-secondary">
+        Cancel
+      </button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #logout>
+  <h4 class="text-center my-4">Are you sure to logout system ?</h4>
+  <div id="loFooter" class="row text-center mb-4">
+    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+      <button class="btn btn-secondary col-12 col-sm-12 col-md-12 col-lg-12">Cancel</button>
+    </div>
+    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+      <button class="btn btn-light col-12 col-sm-12 col-md-12 col-lg-12"
+              (click)="logOut()">Confirm</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #repass>
+  <h4 class="text-center my-4">Change Password</h4>
+
+  <div id="boodyy" style="margin-right: 5%; margin-left: 5%;">
+    <div class="row form-group">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <input class="form-control" placeholder=" Old Password">
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <input class="form-control" placeholder=" New Password">
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <input class="form-control" placeholder=" Retype New Password">
+      </div>
+    </div>
+  </div>
+
+  <div id="rpFooter" class="row text-center mb-4">
+    <div class="col-6 col-lg-6 px-0">
+      <button class="btn btn-secondary col-12 col-sm-12 col-md-12 col-lg-12">Cancel</button>
+    </div>
+    <div class="col-6 col-lg-6 px-0">
+      <button class="btn btn-light col-12 col-sm-12 col-md-12 col-lg-12">Confirm</button>
+    </div>
+  </div>
+</ng-template>
+
+
