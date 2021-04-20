@@ -103,7 +103,6 @@ public class SignupRequest {
         this.roles = roles;
     }
 
-
     public String getPassword() {
         return password;
     }
