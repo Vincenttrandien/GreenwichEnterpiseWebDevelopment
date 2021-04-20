@@ -72,20 +72,20 @@
                 Dashboard</a><br>
         </button>
 
-        <button (click)="mcContribution()" title="Chat">
+        <button (click)="mcChat()" title="Chat">
           <i class="fas fa-comment-dots text-white float-left"></i>
           <a id="mngSubmit" class="btn btn-link text-left text-white py-2 float-left">
                 Chat</a><br>
         </button>
 
-        <button (click)="mcHistory()" title="My Contribution">
+        <button (click)="mcContribution()" title="My Contribution">
           <i class="fas fa-clipboard-list text-white float-left"></i>
           <a id="mngSubmit" class="btn btn-link text-left text-white py-2 float-left">
                 Contribution</a><br>
         </button>
 
         <button (click)="mcHistory()" title="My Contribution">
-          <i class="fas fa-clipboard-list text-white float-left"></i>
+          <i class="fas fa-book-open text-white float-left"></i>
           <a id="mngSubmit" class="btn btn-link text-left text-white py-2 float-left">
                 History Recommended</a><br>
         </button>
@@ -198,13 +198,12 @@
         <a class="text-muted pl-3"> Copyright 2021 LOVI. Company</a>
       </li>
       <li class="float-right">
-        <a class="pr-3"> Privacy Policy | Term & Conditions </a>
+        <a class="pr-3"> <a href="/privacy-policy">Privacy Policy</a> | <a href="/terms-conditions">Term & Conditions</a> </a>
       </li>
     </ul>
   </div>
 </footer>
 
-Ư
 <ng-template #profile>
   <form [formGroup]="profileForm">
     <div class="row">

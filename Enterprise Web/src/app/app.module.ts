@@ -42,6 +42,8 @@ import { MmDashboardComponent } from './mm/mm-dashboard/mm-dashboard.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { CommentComponent } from './comment/comment.component';
 import { McContributionlistComponent } from './mc/mc-contributionlist/mc-contributionlist.component';
+import { StdContributionlistComponent } from './student/std-contributionlist/std-contributionlist.component';
+import { GueDashboardComponent } from './guest/gue-dashboard/gue-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import { McContributionlistComponent } from './mc/mc-contributionlist/mc-contrib
     GueLayoutComponent,
     MmDashboardComponent,
     CommentComponent,
-    McContributionlistComponent
+    McContributionlistComponent,
+    StdContributionlistComponent,
+    GueDashboardComponent
 
   ],
   imports: [

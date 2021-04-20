@@ -1,0 +1,150 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-7 pr-0">
+      <div class="row">
+        <div class="col-md-6 pr-0">
+          <div class="card-box mb-2 mx-2" style="padding: 1rem !important;">
+            <div class="row">
+              <div class="col-lg-10">
+                <p class="font-weight-bold"> Number of Submissions </p>
+              </div>
+              <div class="col-lg-2 text-center">
+                <i class="fas fa-file-alt text-primary" style="font-size: 1.5rem;"></i>
+              </div>
+            </div>
+            <div class="row my-3" style="font-size: 1.7rem">
+              <div class="col-lg-4 text-center">
+                <span class="font-weight-bold"> 5 </span>
+              </div>
+              <div class="col-lg-8 text-left">
+                <p>Contributions</p>
+              </div>
+            </div>
+            <div class="row border-top">
+              <div class="col-lg-4 text-center mt-3" style="margin-right: auto; margin-left: auto">
+                <ng-select [(ngModel)]="topYear" [items]="yearList" [clearable]="false"></ng-select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 pl-0">
+          <div class="card-box mx-2 mb-2" style="padding: 1rem !important">
+            <div class="row">
+              <div class="col-lg-10">
+                <p class="font-weight-bold"> Number of Recommended Contributions </p>
+              </div>
+              <div class="col-lg-2 text-center">
+                <i class="fas fa-file-alt text-primary" style="font-size: 1.4rem;"></i>
+              </div>
+            </div>
+            <div class="row my-3" style="font-size: 1.7rem">
+              <div class="col-lg-4 text-center">
+                <span class="font-weight-bold"> 5 </span>
+              </div>
+              <div class="col-lg-8 text-left">
+                <p>Contributions</p>
+              </div>
+            </div>
+            <div class="row border-top">
+              <div class="col-lg-4 text-center mt-3" style="margin-right: auto; margin-left: auto">
+                <ng-select [(ngModel)]="middleYear" [items]="yearList" [clearable]="false"></ng-select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card-box mx-2 my-2">
+            <google-chart #chart [title]="title" [type]="type" [data]="data"
+                          [options]="options" [width]="width1" [height]="height1">
+            </google-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5 pl-0">
+      <div class="card-box mx-2 mb-2">
+        <google-chart #chart [title]="title" [type]="type" [data]="data"
+                      [options]="options" [width]="width2" [height]="height2">
+        </google-chart>
+      </div>
+      <div class="card-box mx-2 mb-2">
+        <google-chart #chart [title]="title" [type]="type" [data]="data"
+                      [options]="options" [width]="width2" [height]="height2">
+        </google-chart>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-0">
+    <div class="col-lg-4 pr-0">
+      <div class="card-box mt-2 mx-2">
+        <p class="font-weight-bold"> Top Faculty submitted the most contributions </p>
+        <table class="table">
+          <thead class="text-center">
+            <tr>
+              <th>No.</th>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Number of times</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr>
+              <td>1</td>
+              <td>GCS 18603</td>
+              <td>Jacob Jones</td>
+              <td>3</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-lg-4 px-0">
+      <div class="card-box mt-2 mx-2">
+        <p class="font-weight-bold"> Top 5 MC most recommended contributions </p>
+        <table class="table">
+          <thead class="text-center">
+            <tr>
+              <th>No.</th>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Number of times</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr>
+              <td>1</td>
+              <td>GCS 18603</td>
+              <td>Jacob Jones</td>
+              <td>3</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-lg-4 pl-0">
+      <div class="card-box mt-2 mx-2">
+        <p class="font-weight-bold"> Top 5 students with contribution are most recommended </p>
+        <table class="table">
+          <thead class="text-center">
+            <tr>
+              <th>No.</th>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Number of times</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr>
+              <td>1</td>
+              <td>GCS 18603</td>
+              <td>Jacob Jones</td>
+              <td>3</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

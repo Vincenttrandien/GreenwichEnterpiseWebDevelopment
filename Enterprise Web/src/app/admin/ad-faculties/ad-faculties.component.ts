@@ -113,22 +113,21 @@ layoutStatus = 1;
     if (this.updated){
       this.facultyService.updateCategory(this.id, body).subscribe( data => {
         if (data) {
-          this.toastr.success('Thành công','Cập nhật thông tin faculty thành công');
-          this.onReset();
+          this.toastr.success('Update faculty information successfully','Success');
           this.getCategoryList();
         } else {
-          this.toastr.error('Thất bại','Cập nhật thông tin faculty thất bại');
+          this.toastr.error('Faculty update process have an error','Failure');
           this.onReset();
         }
       })
     } else {
       this.facultyService.createNewCategory(body).subscribe( data => {
         if (data) {
-          this.toastr.success('Thành công', 'Tạo mới thông tin faculty thành công');
+          this.toastr.success('New faculty create successfully', 'Success');
           this.onReset();
           this.getCategoryList();
         } else {
-          this.toastr.error('Thất bại','Tạo mới thông tin faculty chưa thành công');
+          this.toastr.error('Faculty creation process have an error','Failure');
           this.onReset();
         }
       })
@@ -137,9 +136,9 @@ layoutStatus = 1;
 
   deleteCategory(item: FACULTY){
     item =  this.facultyList.find(x => x.id == this.idmemor);
-    const textConfirm = 'Dữ liệu bị xóa sẽ không thể khôi phục.';
+    const textConfirm = '<span style="color: #ff0000;">Warning : Deleted data cannot be recovered</span>';
     Swal.fire({
-      title: '<span style="color: #2d8dc7;"> BẠN MUỐN XÓA THÔNG TIN FACULTY <strong style="color: #f1556c; font-weight:bold;">' + '</strong> ?</span>',
+      title: '<span style="color: #2d8dc7;"> DO YOU REALLY WANT TO DELETE THIS FAULTY <strong style="color: #f1556c; font-weight:bold;">' + '</strong> ?</span>',
       html: textConfirm,
       imageHeight: 150,
       imageWidth: 320,
@@ -148,19 +147,19 @@ layoutStatus = 1;
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '',
-      cancelButtonText: 'Bỏ qua',
-      confirmButtonText: 'Đồng ý'
+      cancelButtonText: 'Cancel',
+      confirmButtonText: 'Confirm'
     }).then((result) => {
       if (result.value) {
         this.facultyService.deleteCategory(item.id).subscribe(data => {
           if (data) {
-            this.toastr.success('Thành công', 'Xóa thông tin faculty thành công');
+            this.toastr.success('Faculty information delete successfully', 'Success');
             this.getCategoryList();
             this.onReset();
             this.modalService.dismissAll();
           }
         }, (err) => {
-          this.toastr.error('Thất bại', 'Xóa thông tin faculty thất bại');
+          this.toastr.error('Failed to delete faculty information', 'Failure');
       });
       }
     })

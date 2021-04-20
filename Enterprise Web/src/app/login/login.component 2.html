@@ -1,0 +1,75 @@
+<div class="row">
+
+  <!-- Left Image -->
+  <div class="col-md-6 col-lg-6 px-0">
+    <img id="login" src="/assets/image/loginimg6.png">
+  </div>
+  <!-- End Left Image -->
+
+  <div id="lgForm" class="col-md-5 col-lg-5 text-center">
+
+    <!-- Logo Image -->
+    <div class="logo">
+      <img id="logo" src="/assets/image/logo2-bt.png">
+    </div>
+    <!-- End Logo Image -->
+
+    <div id="card-box" class="card">
+      <h3 class="text-center py-4">Sign In</h3>
+      <form [formGroup]="signinForm" (ngSubmit)="onSubmit(signinForm.value)">
+          <!--Username-->
+        <div id="input" class="row">
+          <div class="col-0 col-lg-1 col-xl-1"></div>
+          <div class="col-6 col-lg-5 col-xl-4 pb-2">
+            <span class="font-weight-bold">Username :</span>
+          </div>
+        </div>
+        <div id="input" class="row">
+          <div class="col-0 col-lg-1"></div>
+          <div class="col-10 col-lg-8 pb-3">
+            <input id="label" class="form-control" formControlName="username"
+                   (enter.keydown)="onSubmit(signinForm.value)" [placeholder]="'Username'">
+          </div>
+        </div>
+        <!-- End Username -->
+
+        <!--Password-->
+        <div id="input" class="row">
+          <div class="col-0 col-lg-1 col-xl-1"></div>
+          <div class="col-6 col-lg-5 col-xl-4 pb-2">
+            <span class="font-weight-bold">Password :</span>
+          </div>
+        </div>
+        <div id="input" class="row">
+          <div class="col-0 col-lg-1"></div>
+          <div class="col-10 col-lg-8 pb-3">
+            <input id="label" type="password" class="form-control" formControlName="password"
+                   (enter.keydown)="onSubmit(signinForm.value)" [placeholder]="'Password'">
+          </div>
+        </div>
+        <!-- End Password -->
+      </form>
+
+      <!-- Remember Password -->
+      <div id="input" class="row">
+        <div class="col-8 col-md-10 col-lg-10 col-xl-8 pb-3">
+          <input type="checkbox" class="mr-2">
+          <span>Remember password ?</span>
+        </div>
+      </div>
+      <!-- End Remember Password -->
+
+      <!-- Login Button -->
+      <div id="input" class="row">
+        <div class="col-10 col-md-10 col-lg-10 text-center px-0 py-2">
+          <button type="submit" (click)="onSubmit(signinForm.value)" class="col-6 col-md-4 col-lg-4 btn btn-primary">
+            Login
+          </button>
+        </div>
+      </div>
+      <!-- End Login Button -->
+
+    </div>
+  </div>
+</div>
+

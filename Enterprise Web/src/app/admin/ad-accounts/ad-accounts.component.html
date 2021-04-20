@@ -3,13 +3,13 @@
     <div class="row form-group">
       <div class="col-6 col-lg-8">
         <h3 class="title font-weight-bold col-form-label">Manage Accounts</h3>
-
+<!--
         <input ngbDatepicker [ngClass]="{ 'is-invalid': submitted && f.dateUpdate.errors }" class="form-control"
         placeholder="dd/MM/yyyy" autocomplete="off" id="name" readonly
         formControlName="dateUpdate" #dateUpdate="ngbDatepicker">
  <div class="input-group-append" (click)="dateUpdate.toggle()">
      <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
- </div>
+ </div> -->
 
       </div>
       <div class="col-6 col-lg-4 text-right">
@@ -25,8 +25,8 @@
         [(ngModel)]="searchKey" placeholder="Search key">
       </div>
       <div class="col-6 col-sm-5 col-md-3 col-lg-3">
-        <ng-select class="responsived" placeholder="Choose Role" [items]="updateRoleList"
-                   bindLabel="name" bindValue="id" [clearable]="false"></ng-select>
+        <!-- <ng-select class="responsived" placeholder="Choose Role" [items]="updateRoleList"
+                   bindLabel="name" bindValue="id" [clearable]="false"></ng-select> -->
       </div>
     </div>
   </div>

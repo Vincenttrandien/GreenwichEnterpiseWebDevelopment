@@ -1,0 +1,53 @@
+#fctimg{
+  width: 100%;
+}
+
+.col-lg-12 {
+  margin-bottom: 2%;
+}
+
+#name, #dl1, #dl2, #img, #upload{
+  height: 160%;
+}
+
+@media only screen and (min-width: 1px) and (max-width: 653px) {
+  .row h4 {
+    font-size: 1rem !important;
+  }
+
+  .row h3{
+    font-size: 0.8rem !important;
+  }
+
+  .row h5, p{
+    font-size: 0.7rem !important;
+  }
+
+
+  #crtbtn{
+    font-size: 0.5rem;
+  }
+
+  #name, #dl1, #dl2, #img, #upload {
+    height: 140%;
+  }
+
+
+}
+
+@media only screen and (min-width: 653px) and (max-width: 1200px) {
+  #crtbtn{
+    font-size: 0.8rem;
+  }
+
+  .row h3{
+    font-size: 1.2rem !important;
+  }
+
+  .row h5, p{
+    font-size: 1.2rem !important;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+}

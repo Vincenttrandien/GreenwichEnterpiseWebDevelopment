@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdAccountsComponent } from './admin/ad-accounts/ad-accounts.component';
 import { AdFacultiesComponent } from './admin/ad-faculties/ad-faculties.component';
 import { AdTopicsComponent } from './admin/ad-topics/ad-topics.component';
+import { GueDashboardComponent } from './guest/gue-dashboard/gue-dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { McContributionComponent } from './mc/mc-contribution/mc-contribution.component';
 import { McContributionlistComponent } from './mc/mc-contributionlist/mc-contributionlist.component';
@@ -158,6 +159,14 @@ const routes: Routes = [
       ]
     },
 
+    // Guest
+    {
+      path: 'guest/dashboard',
+      component: MdfLayoutComponent,
+      children: [
+        { path: '', component: GueDashboardComponent }
+      ]
+    },
 
     // Backgrounds
     {

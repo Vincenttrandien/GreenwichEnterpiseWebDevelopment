@@ -14,16 +14,16 @@
     </div>
 
     <div class="row form-group">
-      <div class="col-5 col-sm-3 col-md-3 col-lg-3">
+      <!-- <div class="col-5 col-sm-3 col-md-3 col-lg-3">
         <ng-select class="mbl" [items]="falList" [clearable]="false" placeholder="Faculty"></ng-select>
-      </div>
+      </div> -->
       <div class="col-5 col-sm-3 col-md-3 col-lg-3">
         <ng-select class="mbl" [(ngModel)]="nam" (change)="getCategoryList()" [items]="yearList" [clearable]="false" placeholder="Year" (change)="getCategoryList()"></ng-select>
       </div>
     </div>
 
     <div class="row" *ngIf=" !topicList || topicList.length < 1 ">
-      <p>Chưa có submission nào</p>
+      <p>Submission not found</p>
 
     </div>
     <div class="row" >

@@ -53,12 +53,18 @@ export class StdContributionComponent implements OnInit {
   progress = 0;
   message = '';
 
+  isSubmitted = false;
+
+  demoDay: any;
+  demoMonth = new Date().getMonth() +1 ;
+
   currentDate : any;
   codeTopic : string;
 
   fileInfos: Observable<any>;
 
   utils: any = validationUtil;
+
 
   ooo: any;
   ngOnInit(): void {
@@ -103,6 +109,9 @@ export class StdContributionComponent implements OnInit {
                           + new Date().getFullYear().toString());
 
     this.getCategoryList();
+
+    this.demoDay = new Date().getDate().toString() + '-' + this.demoMonth + '-' + new Date().getFullYear();
+    console.log(this.demoDay  )
   }
 
   get f (){
@@ -129,7 +138,11 @@ export class StdContributionComponent implements OnInit {
     this.modalService.open( show , {centered: true, size: 'xl'})
   }
 
-  submitForm(submit: any){
+  submitForm(submit: any, item: CONTRIBUTION){
+    if (item) {
+      this.id = item.id;
+      this.contributionForm.patchValue(item);
+    }
     this.modalService.open( submit , {centered: true, size: 'xl'})
   }
 
@@ -140,14 +153,12 @@ export class StdContributionComponent implements OnInit {
       return;
     }
 
-    this.f.dateSubmit.setValue( new String ( this.f.dateSubmit.value.day.toString() + '-'
-                                  + this.f.dateSubmit.value.month.toString() + '-'
-                                  + this.f.dateSubmit.value.year.toString() ));
     body.dateSubmit  = this.f.dateSubmit.value.toString();
     body.codeUser = this.cookie.get('Currentcode');
     body.codeTopic = this.codeTopic;
     body.nameFaculty = this.cookie.get("facultyName").toString();
     body.codeUserRecommend = this.cookie.get("Currentcode").toString();
+    body.dateSubmit = this.demoDay;
 
     if (this.updated){
       this.id = this.ooo;
@@ -155,6 +166,7 @@ export class StdContributionComponent implements OnInit {
         if (data) {
           this.toaster.success('Success','Success');
           this.modalService.dismissAll;
+          this.isSubmitted = true
         }
       }})
     } else {
@@ -164,6 +176,7 @@ export class StdContributionComponent implements OnInit {
           this.modalService.dismissAll;
           this.updated = true;
           this.ooo = data.id;
+          this.isSubmitted = true
         }
       })
     }
@@ -184,6 +197,7 @@ export class StdContributionComponent implements OnInit {
         if (event.type === HttpEventType.UploadProgress) {
           this.toaster.success("File upload successfully");
           this.contributionService.getFiles();
+          this.contributionForm.reset();
           this.modalService.dismissAll();
           this.getCategoryList();
         } else if (event instanceof HttpResponse) {

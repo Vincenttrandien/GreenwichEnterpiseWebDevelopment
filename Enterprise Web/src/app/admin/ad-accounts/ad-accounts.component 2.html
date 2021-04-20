@@ -1,0 +1,509 @@
+<div class="container-fluid">
+  <div class="card-box">
+    <div class="row form-group">
+      <div class="col-6 col-lg-8">
+        <h3 class="title font-weight-bold col-form-label">Manage Accounts</h3>
+
+        <input ngbDatepicker [ngClass]="{ 'is-invalid': submitted && f.dateUpdate.errors }" class="form-control"
+        placeholder="dd/MM/yyyy" autocomplete="off" id="name" readonly
+        formControlName="dateUpdate" #dateUpdate="ngbDatepicker">
+ <div class="input-group-append" (click)="dateUpdate.toggle()">
+     <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+ </div>
+
+      </div>
+      <div class="col-6 col-lg-4 text-right">
+        <button class="btnfont col-form-label btn btn-outline-dark"
+                (click)="createModal(create)">
+                <i class="fas fa-plus"></i> Add new account
+        </button>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-6 col-sm-5 col-md-5 col-lg-4">
+        <input class="form-control" (keydown.enter)="getCategoryList()"
+        [(ngModel)]="searchKey" placeholder="Search key">
+      </div>
+      <div class="col-6 col-sm-5 col-md-3 col-lg-3">
+        <ng-select class="responsived" placeholder="Choose Role" [items]="updateRoleList"
+                   bindLabel="name" bindValue="id" [clearable]="false"></ng-select>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-box row">
+    <div class="col-12 table-responsive" style="overflow-x:auto !important;">
+      <table class="table table-hover">
+        <thead>
+          <tr class="text-center">
+            <th id="no" class="px-0">No.</th>
+            <th id="code">User Code</th>
+            <th id="name">Account Name</th>
+            <!-- <th>Role</th> -->
+            <th id="email">Email</th>
+            <th id="date">Date</th>
+            <th id="add">Address</th>
+            <th id="pn">Phone Number</th>
+            <th id="action">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="!accountList || accountList.length < 1">
+            <td class="text-center" colspan="6">Không có dữ liệu</td>
+          </tr>
+
+          <tr *ngFor="let item of accountList; let i = index">
+              <td id="no" class="text-center">{{((pageNum - 1) * pageSize) + i + 1 }}</td>
+              <td id="code">{{item?.codeUser}}</td>
+              <td id="name" class="text-primary" (click)="viewModal(item, view)">{{item?.name}}</td>
+              <td id="email" class="text-break">{{item?.email}}</td>
+              <td id="date">{{item?.dob}}</td>
+              <td id="add" class="text-wrap">{{item?.address}}</td>
+              <td id="pn">{{item?.phoneNumber}}</td>
+              <td id="action" class="text-center px-0">
+                <!-- <button class="btn btn-link text-dark" (click)="viewModal(item, view)"><i class="far fa-eye"></i></button> -->
+                <button class="btn btn-link text-primary" (click)="editModal(item, edit)"><i class="fas fa-user-edit"></i></button>
+                <button class="btn btn-link text-danger" (click)="deleteCategory(item)"><i class="fas fa-trash"></i></button>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #create>
+  <div class="div-title">
+    <h4 class="float-left mt-3 ml-3">Create new account</h4>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="accountForm" (ngSubmit)="onSubmit(accountForm.value)">
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">User Code:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <input [ngClass]="{ 'is-invalid': submitted && f.name.errors }" class="form-control"
+                 formControlName="codeUser" placeholder="User Code">
+          <div *ngIf="submitted && f.codeUser.errors" class="invalid-feedback">
+            <div *ngIf="f.codeUser.errors.required">User code cannot be empty</div>
+            <div *ngIf="f.codeUser.errors.maxlength">User code cannot be more than {{utils.CODE_MAXLENGTH}} characters long</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">Name:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <input [ngClass]="{ 'is-invalid': submitted && f.name.errors }" class="form-control"
+                 formControlName="name" id="name" placeholder="Name" type="text">
+          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">User name cannot be empty</div>
+            <div *ngIf="f.name.errors.pattern">User name cannot contain special characters</div>
+            <div *ngIf="f.name.errors.maxlength">User name cannot be more than {{utils.CODE_MAXLENGTH}} characters long</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">Email:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <input [ngClass]="{ 'is-invalid': submitted && f.email.errors }" class="form-control"
+                 formControlName="email" placeholder="Email" type="text">
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email cannot be empty</div>
+            <div *ngIf="f.email.errors.pattern">Email format is incorrect</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">Date of Birth:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <input [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" class="form-control"
+                 formControlName="dob" placeholder="Date of Birth">
+          <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
+            <div *ngIf="f.dob.errors.required">Date of birth cannot be empty</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">Address:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <input [ngClass]="{ 'is-invalid': submitted && f.address.errors }" class="form-control"
+                 formControlName="address" placeholder="Address">
+          <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+            <div *ngIf="f.address.errors.required">Address cannot be empty</div>
+            <div *ngIf="f.address.errors.maxlength">Address cannot be more than {{utils.CODE_MAXLENGTH}} characters long</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">Phone Number:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <input [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" class="form-control"
+                 formControlName="phoneNumber" placeholder="Phone Number">
+          <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
+            <div *ngIf="f.phoneNumber.errors.required">Phone number cannot be empty</div>
+            <div *ngIf="f.phoneNumber.errors.pattern">Phone number format is incorrect</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">School Year:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <ng-select [ngClass]="{ 'is-invalid': submitted && f.nam.errors }"
+              placeholder="School Year" [items]="yearList" [clearable]="false"
+              formControlName="nam"></ng-select>
+          <div *ngIf="submitted && f.nam.errors" class="invalid-feedback">
+            <div *ngIf="f.nam.errors.required">School year cannot be empty</div>
+            <div *ngIf="f.nam.errors.maxlength">School year cannot be more than {{utils.CODE_MAXLENGTH}} characters long</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">Username:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <input [ngClass]="{ 'is-invalid': submitted && f.username.errors }" class="form-control"
+                 formControlName="username" placeholder="Username">
+          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username cannot be empty</div>
+            <div *ngIf="f.username.errors.maxlength">Username cannot be more than {{utils.CODE_MAXLENGTH}} characters long</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">Password:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <input [ngClass]="{ 'is-invalid': submitted && f.password.errors }" class="form-control"
+                 formControlName="password" placeholder="Password" type="password">
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password cannot be empty</div>
+            <div *ngIf="f.password.errors.maxlength">Password cannot be more than {{utils.CODE_MAXLENGTH}} characters long</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">Retype Password:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <input [ngClass]="{ 'is-invalid': submitted && f.retypePassword.errors }" class="form-control"
+                 formControlName="retypePassword" placeholder="Retype Password" type="password">
+          <div *ngIf="submitted && f.retypePassword.errors" class="invalid-feedback">
+            <div *ngIf="f.retypePassword.errors.required">Retype password cannot be empty</div>
+            <div *ngIf="f.retypePassword.errors.maxlength">Retype password cannot be more than {{utils.CODE_MAXLENGTH}} characters long</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">Role:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <ng-select [ngClass]="{ 'is-invalid': submitted && f.roles.errors }"
+                     placeholder="Choose Role" [items]="roleList" [clearable]="false"
+                     bindLabel="name" bindValue="id" formControlName="roles"></ng-select>
+          <div *ngIf="submitted && f.roles.errors" class="invalid-feedback">
+            <div *ngIf="f.roles.errors.required">Please choose user's role</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">Faculty:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <ng-select [ngClass]="{ 'is-invalid': submitted && f.facultyName.errors }"
+                     placeholder="Choose Faculty" [items]="falList" formControlName="facultyName"
+                     [clearable]="false"></ng-select>
+          <div *ngIf="submitted && f.facultyName.errors" class="invalid-feedback">
+            <div *ngIf="f.facultyName.errors.required">Please choose user's faculty</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 text-right">
+          <button type="submit" class="col-lg-12 btn btn-outline-dark btnfont"> {{btnSubmitName}} </button>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 text-left">
+          <button class="col-lg-12 btn btn-secondary btnfont" (click)="closeModal()"> Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #edit>
+  <div class="">
+    <h4 class="float-left mt-3 ml-3">Marketing Coordinator Profile</h4>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="accountForm" (ngSubmit)="onSubmit(accountForm.value)">
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">User Code:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <input [ngClass]="{ 'is-invalid': submitted && f.name.errors }" class="form-control"
+                 formControlName="codeUser" placeholder="User Code">
+          <div *ngIf="submitted && f.codeUser.errors" class="invalid-feedback">
+            <div *ngIf="f.codeUser.errors.required">User code cannot be empty</div>
+            <div *ngIf="f.codeUser.errors.maxlength">User code cannot be more than {{utils.CODE_MAXLENGTH}} characters long</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">Name:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <input [ngClass]="{ 'is-invalid': submitted && f.name.errors }" class="form-control"
+                 formControlName="name" id="name" placeholder="Name" type="text">
+          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">User name cannot be empty</div>
+            <div *ngIf="f.name.errors.pattern">User name cannot contain special characters</div>
+            <div *ngIf="f.name.errors.maxlength">User name cannot be more than {{utils.CODE_MAXLENGTH}} characters long</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">Email:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <input [ngClass]="{ 'is-invalid': submitted && f.email.errors }" class="form-control"
+                 formControlName="email" placeholder="Email" type="text">
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email cannot be empty</div>
+            <div *ngIf="f.email.errors.pattern">Email format is incorrect</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">Date of Birth:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <input [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" class="form-control"
+                 formControlName="dob" placeholder="Date of Birth">
+          <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
+            <div *ngIf="f.dob.errors.required">Date of birth cannot be empty</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">Address:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <input [ngClass]="{ 'is-invalid': submitted && f.address.errors }" class="form-control"
+                 formControlName="address" placeholder="Address">
+          <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+            <div *ngIf="f.address.errors.required">Address cannot be empty</div>
+            <div *ngIf="f.address.errors.maxlength">Address cannot be more than {{utils.CODE_MAXLENGTH}} characters long</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">Phone Number:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <input [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" class="form-control"
+                 formControlName="phoneNumber" placeholder="Phone Number">
+          <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
+            <div *ngIf="f.phoneNumber.errors.required">Phone number cannot be empty</div>
+            <div *ngIf="f.phoneNumber.errors.pattern">Phone number format is incorrect</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">School Year:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <ng-select [ngClass]="{ 'is-invalid': submitted && f.nam.errors }"
+              placeholder="School Year" [items]="yearList" [clearable]="false"
+              formControlName="nam"></ng-select>
+          <div *ngIf="submitted && f.nam.errors" class="invalid-feedback">
+            <div *ngIf="f.nam.errors.required">School year cannot be empty</div>
+            <div *ngIf="f.nam.errors.maxlength">School year cannot be more than {{utils.CODE_MAXLENGTH}} characters long</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">Username:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <input [ngClass]="{ 'is-invalid': submitted && f.username.errors }" class="form-control"
+                 formControlName="username" placeholder="Username">
+          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username cannot be empty</div>
+            <div *ngIf="f.username.errors.maxlength">Username cannot be more than {{utils.CODE_MAXLENGTH}} characters long</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">Password:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <input [ngClass]="{ 'is-invalid': submitted && f.password.errors }" class="form-control"
+                 formControlName="password" placeholder="Password" type="password">
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password cannot be empty</div>
+            <div *ngIf="f.password.errors.maxlength">Password cannot be more than {{utils.CODE_MAXLENGTH}} characters long</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">Retype Password:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <input [ngClass]="{ 'is-invalid': submitted && f.retypePassword.errors }" class="form-control"
+                 formControlName="retypePassword" placeholder="Retype Password" type="password">
+          <div *ngIf="submitted && f.retypePassword.errors" class="invalid-feedback">
+            <div *ngIf="f.retypePassword.errors.required">Retype password cannot be empty</div>
+            <div *ngIf="f.retypePassword.errors.maxlength">Retype password cannot be more than {{utils.CODE_MAXLENGTH}} characters long</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">Role:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <ng-select [ngClass]="{ 'is-invalid': submitted && f.roles.errors }"
+                     placeholder="Choose Role" [items]="updateRoleList" [clearable]="false"
+                     bindLabel="name" bindValue="id" formControlName="roles"></ng-select>
+          <div *ngIf="submitted && f.roles.errors" class="invalid-feedback">
+            <div *ngIf="f.roles.errors.required">Please choose user's role</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+          <label class="font-weight-bold">Faculty:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+          <ng-select [ngClass]="{ 'is-invalid': submitted && f.facultyName.errors }"
+                     placeholder="Choose Faculty" [items]="falList" formControlName="facultyName"
+                     [clearable]="false"></ng-select>
+          <div *ngIf="submitted && f.facultyName.errors" class="invalid-feedback">
+            <div *ngIf="f.facultyName.errors.required">Please choose user's faculty</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-right">
+          <button class="btn btn-light btnfont" (click)="onSubmit(accountForm.value)">
+            <i class="fas fa-edit"></i> {{btnSubmitName}}</button>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-left">
+          <button class="btn btn-secondary btnfont" (click)="closeModal()">
+            <i class="fas fa-times-circle"></i> Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #view>
+  <div class="">
+    <h4 class="float-left mt-3 ml-3">Marketing Coordinator Profile</h4>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="accountForm">
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          <label class="font-weight-bold">User Code:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+          <input class="form-control" formControlName="codeUser" placeholder="User Code" disabled>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          <label class="font-weight-bold">Account Name:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+          <input class="form-control" formControlName="name" placeholder="Account Name" disabled>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          <label class="font-weight-bold">Email:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+          <input class="form-control" formControlName="email" placeholder="Email" disabled>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          <label class="font-weight-bold">Date:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+          <input class="form-control" formControlName="dob" disabled>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          <label class="font-weight-bold">Address:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+          <input class="form-control" formControlName="address" disabled>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          <label class="font-weight-bold">Phone Number:</label>
+        </div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+          <input class="form-control" formControlName="phoneNumber" disabled>
+        </div>
+      </div>
+      <!-- <div class="row form-group">
+        <div class="col-lg-4">
+          <label class="font-weight-bold">Role:</label>
+        </div>
+        <div class="col-lg-8">
+          <input class="form-control" formControlName="role" placeholder="Choose Role" disabled>
+        </div>
+      </div> -->
+      <!-- <div class="row form-group">
+        <div class="col-lg-4">
+          <label class="font-weight-bold">Faculty:</label>
+        </div>
+        <div class="col-lg-8">
+          <input class="form-control" formControlName="faculty" placeholder="Choose Faculty" disabled>
+        </div>
+      </div> -->
+
+      <div class="row form-group">
+        <div class="col-lg-12 text-center">
+          <button class="btn btn-secondary btnfont" (click)="closeModal()">
+            <i class="fas fa-times-circle"></i> Close</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</ng-template>

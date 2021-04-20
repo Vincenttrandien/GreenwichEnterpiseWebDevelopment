@@ -277,7 +277,7 @@ ngOnInit(): void {
       if (result.value) {
         this.accountsService.deleteCategory(item.id).subscribe(data => {
           if (data) {
-            this.toaster.success('Delete user information successfully', 'Success');
+            this.toaster.success('User information delete successfully', 'Success');
             this.getCategoryList();
             this.onReset();
             this.modalService.dismissAll();

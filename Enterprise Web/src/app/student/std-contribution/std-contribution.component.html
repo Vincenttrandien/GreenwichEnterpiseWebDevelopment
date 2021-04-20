@@ -93,7 +93,11 @@
         <table class="table table-bordered">
           <tbody>
             <tr>
-              <td>Submission Status : <span>Submitted</span></td>
+              <td>Submission Status :
+                <article *ngIf="isSubmitted"><button class="btn btn-success">Submitted</button></article>
+                <article *ngIf="!isSubmitted"><button class="btn btn-danger">None</button></article>
+              </td>
+
             </tr>
             <tr>
               <td>Due Date : <span>Submitted</span></td>
@@ -125,7 +129,7 @@
             </div>
           </div>
         </div>
-        <div class="row form-group">
+        <!-- <div class="row form-group">
           <div class="col-lg-2">
             <label>Submit Date:</label>
           </div>
@@ -140,7 +144,7 @@
               <div *ngIf="f.dateSubmit.errors.required">Submit date cannot be empty</div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="row form-group">
           <div class="col-lg-2">
             <label>Comment :</label>
@@ -214,14 +218,14 @@
                     <div class="box" style="margin: 0rem; width: 100%; border-radius: 0.5rem; border-color: #dee2e6;">
                       <div class="row form-group">
                         <div class="col-7 col-sm-7 col-md-7 col-lg-7 col-xl-7">
-                          <span class="font-weight-bold"> Tên + Role </span>
+                          <span class="font-weight-bold"> Username + User Role </span>
                         </div>
                         <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 text-right">
-                          <span class="font-weight-bold"> Ngày </span>
+                          <span class="font-weight-bold"> Comment Date </span>
                         </div>
                       </div>
                       <div class="row">
-                        <span class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">Nội dung</span>
+                        <span class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">Comment content</span>
                       </div>
                     </div>
                   </div>

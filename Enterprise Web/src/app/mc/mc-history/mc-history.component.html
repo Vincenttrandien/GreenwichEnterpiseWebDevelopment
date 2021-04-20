@@ -28,7 +28,7 @@
         <tr *ngIf=" !recommendList || recommendList.length < 1">
           <td class="text-center" colspan="6"></td>
         </tr>
-        <tr *ngFor="let item of recommendList" class="text-center">
+        <tr *ngFor="let item of recommendList; let i = index" class="text-center">
           <td class="text-center">{{((pageNum - 1) * pageSize) + i + 1}}</td>
           <td>{{item.codeSubmission}}</td>
           <td>{{item.codeTopic}}</td>
@@ -81,7 +81,7 @@
             </div>
             <div class="row">
               <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 content-2">
-                Viết non vl viết lại đi
+                Goodjob !!!
               </div>
             </div>
           </td>

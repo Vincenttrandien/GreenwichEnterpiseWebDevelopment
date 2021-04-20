@@ -1,0 +1,145 @@
+<div class="container-fluid">
+  <div class="card-box">
+    <div class="row">
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-form-label">
+        <h1 class="title font-weight-bold col-form-label">Manage Faculty</h1>
+      </div>
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+        <button id="facultybtn" class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 font-weight-bold py-3 mr-2 mb-3 col-form-label btn btn-outline-secondary float-right"
+        (click)="createLayout()"> Create </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 col-lg-4">
+        <div class="row">
+          <div class="col-9 col-lg-9" *ngIf="!facultyList || facultyList.length < 1">
+            <p class="text-center"> Chưa có ngành nào </p>
+          </div>
+
+          <div class="col-9 col-lg-9" *ngFor="let item of facultyList; let i = index">
+            <button id="facultybtn" (click)="viewInfo(item)"
+              class="font-weight-bold btnfont py-4 mx-4 mb-3 btn btn-outline-secondary float-left"> {{item?.name}}
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-9 col-lg-8">
+        <div class="row" *ngIf="layoutStatus == 1">
+          <div class="col-12 col-lg-12 pb-3">
+            <div class="box">
+              <div class="row form-group">
+                <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
+                  <h5 class="title" style="margin-top: 0.5rem"> Add New Faculty </h5>
+                </div>
+              </div>
+              <form [formGroup]="facultyForm" (ngSubmit)="onSubmit(facultyForm.value)">
+                <div class="row form-group">
+                  <div class="col-12 col-lg-12">
+                    <input [ngClass]="{ 'is-invalid': submitted && f.codeFaculty.errors }" class="form-control"
+                           formControlName="codeFaculty" placeholder="Faculty Code">
+                    <div *ngIf="submitted && f.codeFaculty.errors" class="invalid-feedback">
+                      <div *ngIf="f.codeFaculty.errors.required">Code faculty cannot be empty</div>
+                      <div *ngIf="f.codeFaculty.errors.maxlength">Code faculty cannot be more than {{utils.CODE_MAXLENGTH}} characters long</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-12 col-lg-12">
+                    <input [ngClass]="{ 'is-invalid': submitted && f.name.errors }" class="form-control"
+                           formControlName="name" placeholder="Faculty Name">
+                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                      <div *ngIf="f.name.errors.required">Faculty name cannot be empty</div>
+                      <div *ngIf="f.name.errors.maxlength">Faculty name cannot be more than {{utils.CODE_MAXLENGTH}} characters long</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-12 col-lg-12">
+                    <ng-select [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+                           formControlName="nam" [items]="yearList" [clearable]="false" placeholder="Year"></ng-select>
+                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                      <div *ngIf="f.nam.errors.required">School year cannot be empty</div>
+                      <div *ngIf="f.nam.errors.maxlength">School year cannot be more than {{utils.CODE_MAXLENGTH}} characters long</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-12 col-lg-12">
+                    <textarea class="form-control mb-0" formControlName="desc" rows="3" placeholder="Description"></textarea>
+                  </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-5"></div>
+                    <button class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 btn btn-outline-dark btnfont"
+                        type="submit"> {{submitBtnName}} </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="layoutStatus == 2">
+          <div class="col-12 col-lg-12 pb-3">
+            <div class="box">
+              <div class="row form-group">
+                <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
+                  <h5 class="title" style="margin-top: 0.5rem"> Update Category </h5>
+                </div>
+                <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                  <button class="btn btn-outline-danger float-right btnfont"
+                          (click)="deleteCategory(item)">Delete</button>
+                </div>
+              </div>
+              <form [formGroup]="facultyForm" (ngSubmit)="onSubmit(facultyForm.value)">
+                <div class="row form-group">
+                  <div class="col-12 col-lg-12">
+                    <input [ngClass]="{ 'is-invalid': submitted && f.codeFaculty.errors }" class="form-control"
+                           formControlName="codeFaculty" placeholder="Faculty Code">
+                    <div *ngIf="submitted && f.codeFaculty.errors" class="invalid-feedback">
+                      <div *ngIf="f.codeFaculty.errors.required">Code faculty cannot be empty</div>
+                      <div *ngIf="f.codeFaculty.errors.maxlength">Code faculty cannot be more than {{utils.CODE_MAXLENGTH}} characters long</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-12 col-lg-12">
+                    <input [ngClass]="{ 'is-invalid': submitted && f.name.errors }" class="form-control"
+                           formControlName="name" placeholder="Faculty Name">
+                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                      <div *ngIf="f.name.errors.required">Faculty name cannot be empty</div>
+                      <div *ngIf="f.name.errors.maxlength">Faculty name cannot be more than {{utils.CODE_MAXLENGTH}} characters long</div>
+                    </div>v>
+                  </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-12 col-lg-12">
+                    <input [ngClass]="{ 'is-invalid': submitted && f.nam.errors }" class="form-control"
+                           formControlName="nam" placeholder="Year">
+                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                      <div *ngIf="f.nam.errors.required">School year cannot be empty</div>
+                      <div *ngIf="f.nam.errors.maxlength">School year cannot be more than {{utils.CODE_MAXLENGTH}} characters long</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-12 col-lg-12">
+                    <textarea class="form-control" formControlName="desc" rows="3" placeholder="Description"></textarea>
+                  </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-5"></div>
+                  <button class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 btn btn-outline-dark btnfont"
+                      type="submit"> {{submitBtnName}} </button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -31,6 +31,8 @@ export class AdTopicsComponent implements OnInit {
 
   idmemor: any;
 
+  ooo: any;
+
   nam = 2020;
   pageNum = 1;
   pageSize = 10;
@@ -116,7 +118,7 @@ export class AdTopicsComponent implements OnInit {
     if ( this.topicForm.invalid) {
       return;
     }
-
+    this.selectFile(event)
 
     this.f.dateUpdate.setValue( new String ( this.f.dateUpdate.value.day.toString() + '-' + this.f.dateUpdate.value.month.toString() + '-' + this.f.dateUpdate.value.year.toString() ));
     this.f.dateUpdate2.setValue( new String ( this.f.dateUpdate2.value.day.toString() + '-' + this.f.dateUpdate2.value.month.toString() + '-' + this.f.dateUpdate2.value.year.toString() ));
@@ -185,14 +187,9 @@ export class AdTopicsComponent implements OnInit {
   selectFile(event) {
     this.selectedFiles = event.target.files;
     if (this.selectFile) {
-      if (validationUtil.checkFileType(event.target.files[0]) ) {
-        this.upload();
-      }
-      // } else {
-      //   this.toaster.warning('Please choose a Office file except PP', 'Wrong file format');
-      // }
+      this.upload();
     } else {
-      this.toaster.warning('Please choose a file', 'Warning');
+      this.toaster.error('failure','failure');
     }
   }
 
@@ -200,9 +197,11 @@ export class AdTopicsComponent implements OnInit {
     this.currentFile = this.selectedFiles.item(0);
     this.topicService.uploadFile(this.currentFile, this.topicId).subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
-          console.log(this.currentFile.name);
-        } else {
-          this.toaster.error("Cannot upload file",);
+          this.toaster.success("File upload successfully");
+
+          this.topicForm.reset();
+          this.modalService.dismissAll();
+          this.getCategoryList();
         }
       },
       err => {

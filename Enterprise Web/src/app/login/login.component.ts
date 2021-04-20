@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
   onSubmit(value: SIGNIN) {
     this.loginService.login(value).subscribe ( data => {
       if ( data ) {
-        this.toast.success("đăng nhập thành công");
+        this.toast.success("Succesfully Login");
         this.id = data.id ;
         this.signinForm.patchValue(data);
 
@@ -86,7 +86,6 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/guest/dashboard']);
             break;
           } default: {
-            this.toast.error('Thất bại','Chưa lấy được data đâu');
             break;
           }
         }

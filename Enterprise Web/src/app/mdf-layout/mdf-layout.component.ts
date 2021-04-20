@@ -152,11 +152,11 @@ export class MdfLayoutComponent implements OnInit {
   updateProfile(body : ACCOUNTs){
     this.accountService.updateCategory(this.id, body).subscribe( data => {
       if (data) {
-        this.toast.success('Thành công', 'Cập nhật thông tin người dùng thành công');
+        this.toast.success('Update user information successfully', 'Success');
         this.modalService.dismissAll();
       }
     }, (err) => {
-      this.toast.error('Thất bại', 'Cập nhật thông tin cá nhân thất bại vui lòng kiểm tra')
+      this.toast.error('Update user information process have an error', 'Failure')
     })
   }
 
