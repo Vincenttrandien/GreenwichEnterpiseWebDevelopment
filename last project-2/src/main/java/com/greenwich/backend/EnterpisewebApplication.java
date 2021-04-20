@@ -1,20 +1,9 @@
 package com.greenwich.backend;
 
-import com.greenwich.backend.entity.ERole;
-import com.greenwich.backend.entity.Role;
-import com.greenwich.backend.entity.User;
-import com.greenwich.backend.repository.RoleRepository;
-import com.greenwich.backend.repository.UserRepository;
-import com.greenwich.backend.request.SignupRequest;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
 
 @SpringBootApplication
 public class EnterpisewebApplication{
